@@ -1,10 +1,6 @@
 ﻿using System;
 using SimpleCalculator;
-using System.Linq;
-using System.Collections;
-using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System.Text.RegularExpressions;
 
 namespace SimpleCalculatorTests
 {
@@ -59,27 +55,54 @@ namespace SimpleCalculatorTests
         }
 
         [TestMethod]
-        public void ParseEnsureGoodInput()
+        public void ParseEnsureGoodInputNoSpace()
         {
-            // Arrange
-            Parse noSpaces = new Parse();
+            // Arrange 
+            Parse user_input = new Parse();
             // Act          
-            string actual = noSpaces.AddSpace("1-1");
-            string expectedNoSpaces = "1 - 1";
+            string actual = user_input.ValEx("1-12");
+            string expected = "1 - 12";
             // Assert
-            Assert.AreEqual(expectedNoSpaces, actual);
+            Assert.AreEqual(expected, actual);
         }
 
         [TestMethod]
-        public void ParseEnsureBadInput()
+        public void ParseEnsureGoodInputWithSpace()
         {
-            // Arrange
-            Parse noOperator = new Parse();
-            // Act
-            string actual = noOperator.AddSpace("1 1");
-            string expected = null;
+            // Arrange 
+            Parse user_input = new Parse();
+            // Act          
+            string actual = user_input.ValEx("1 - 12");
+            string expected = "1 - 12";
             // Assert
             Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException))]
+        public void ParseEnsureBadInputMisplacedOperator()
+        {
+            Parse user_input = new Parse();
+            user_input.ValEx("1 +1");
+
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException))]
+        public void ParseEnsureBadInputNoOperator()
+        {
+            Parse user_input = new Parse();
+            user_input.ValEx("1 1");
+
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException))]
+        public void ParseEnsureBadInputExtraOperator()
+        {
+            Parse user_input = new Parse();
+            user_input.ValEx("1++1");
+
         }
     }
 }
