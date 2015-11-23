@@ -5,9 +5,6 @@ namespace SimpleCalculator
 { 
     public class Parse
     {
-        
-        public string Expression { get; set; }
-
         public string AddSpace(string input)
         {
             string firstDigit = @"^-?\d+";
@@ -33,7 +30,11 @@ namespace SimpleCalculator
             {
                 return expression;
             }
-            throw new ArgumentException();
+            else
+            {
+                throw new ArgumentException();
+            }
+            
         }
     }
 }
