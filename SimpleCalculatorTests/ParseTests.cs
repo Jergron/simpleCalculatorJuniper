@@ -15,33 +15,6 @@ namespace SimpleCalculatorTests
         }
 
         [TestMethod]
-        public void ParseEnsureGetTheExpressionFromUser()
-        {
-            // Arrange
-            Parse userInput = new Parse();
-            userInput.Expression = "1 + 1";
-            // Act
-            string expected = "1 + 1";
-            string actual = userInput.Expression;
-            // Assert
-            Assert.AreEqual(expected, actual);
-        }
-
-        [TestMethod]
-        public void ParseEnsureConvertStringToInteger()
-        {
-            // Arrange
-            Parse userInput = new Parse();
-            // Act
-            int actual;
-            string input = "13";
-            int expected = 13;
-            int.TryParse(input, out actual);
-            // Assert
-            Assert.AreEqual(expected, actual);
-        }
-
-        [TestMethod]
         public void ParseEnsureSplitMethodWithSpaces()
         {
             // Arrange
@@ -84,7 +57,6 @@ namespace SimpleCalculatorTests
         {
             Parse user_input = new Parse();
             user_input.ValEx("1 +1");
-
         }
 
         [TestMethod]
@@ -93,7 +65,6 @@ namespace SimpleCalculatorTests
         {
             Parse user_input = new Parse();
             user_input.ValEx("1 1");
-
         }
 
         [TestMethod]
@@ -102,7 +73,14 @@ namespace SimpleCalculatorTests
         {
             Parse user_input = new Parse();
             user_input.ValEx("1++1");
+        }
 
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException))]
+        public void ParseEnsureBadInputOperatorAtEndOfExpression()
+        {
+            Parse user_input = new Parse();
+            user_input.ValEx("1+1+");
         }
     }
 }
