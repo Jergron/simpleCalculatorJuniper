@@ -1,18 +1,17 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SimpleCalculator
 {
-    public class Evaluate : Parse
+    public class Evaluate: Parse
     {
-        int x;
-        int y;
+        public int x;
+        public int y;
+        public int last;
+        public string lastq;
 
         public int EvalEx(string input)
         {
+            lastq = input;
             string[] array = input.Split(' ');
 
             int.TryParse(array[0], out x);
@@ -20,26 +19,34 @@ namespace SimpleCalculator
 
             if (array[1] == "+")
             {
+                last = x + y;
                 return x + y;
             }
             else if (array[1] == "-")
             {
+                last = x - y;
                 return x - y;
             }
             else if (array[1] == "*")
             {
+                last = x * y;
                 return x * y;
             }
             else if (array[1] == "/")
             {
+                last = x / y;
                 return x / y;
             }
             else if (array[1] == "%")
             {
+                last = x % y;
                 return x % y;
             }
-
-            throw new NotImplementedException();
+            else
+            {
+                throw new NotImplementedException();
+            }
+            
         }
     }
 }
