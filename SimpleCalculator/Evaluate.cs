@@ -14,32 +14,31 @@ namespace SimpleCalculator
         public int EvalEx(string input)
         {
             string[] array = input.Split(' ');
-            for (int i = 0; i < array.Length; i++)
+
+            int.TryParse(array[0], out x);
+            int.TryParse(array[2], out y);
+
+            if (array[1] == "+")
             {
-                int.TryParse(array[0], out x);
-                int.TryParse(array[2], out y);
-               
-                if (array[1] == "+")
-                {
-                    return x + y;
-                }
-                else if (array[1] == "-")
-                {
-                    return x - y;
-                }
-                else if (array[1] == "*")
-                {
-                    return x * y;
-                }
-                else if (array[1] == "/")
-                {
-                    return x / y;
-                }
-                else 
-                {
-                    return x % y;
-                }
+                return x + y;
             }
+            else if (array[1] == "-")
+            {
+                return x - y;
+            }
+            else if (array[1] == "*")
+            {
+                return x * y;
+            }
+            else if (array[1] == "/")
+            {
+                return x / y;
+            }
+            else if (array[1] == "%")
+            {
+                return x % y;
+            }
+
             throw new NotImplementedException();
         }
     }
