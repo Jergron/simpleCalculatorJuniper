@@ -6,26 +6,28 @@ namespace SimpleCalculator
     public class Parse
     {
         public string AddSpace(string input)
-        {
+        {          
             string firstDigit = @"^-?\d+";
-            string secondDigit = @"\d*\d$";
-            string operators = @"[+-/%*]";
-            string pattern = @"-?\d+\s{0,0}[+-/%*]\s{0,0}-?\d+";
+            string secondDigit = @"(?<!\d)(-?\d+$)";
+            string operators = @"(?!^)([-+*/%])";
             string replacement = Regex.Match(input, firstDigit) + " " + Regex.Match(input, operators) + " " + Regex.Match(input, secondDigit);
+            string pattern = @"-?\d+[+-/%*]-?\d+";
             Regex rgx = new Regex(pattern);
             if (rgx.IsMatch(input))
             {
                 return rgx.Replace(input, replacement);
             }
-            return input;
-
+            else
+            {
+                return input;
+            }           
         }
 
         public string ValEx(string input)
         {
             string expression = AddSpace(input);
 
-            Regex rgx = new Regex(@"-?\d+\s[+-/*%]{1,1}\s-?\d+");
+            Regex rgx = new Regex(@"-?\d+\s[+-/*%]\s-?\d+");
             if (rgx.IsMatch(expression))
             {
                 return expression;

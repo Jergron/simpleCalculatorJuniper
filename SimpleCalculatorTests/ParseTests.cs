@@ -33,8 +33,8 @@ namespace SimpleCalculatorTests
             // Arrange 
             Parse user_input = new Parse();
             // Act          
-            string actual = user_input.ValEx("1-12");
-            string expected = "1 - 12";
+            string actual = user_input.ValEx("-1 - -12");
+            string expected = "-1 - -12";
             // Assert
             Assert.AreEqual(expected, actual);
         }
@@ -45,8 +45,8 @@ namespace SimpleCalculatorTests
             // Arrange 
             Parse user_input = new Parse();
             // Act          
-            string actual = user_input.ValEx("1 - 12");
-            string expected = "1 - 12";
+            string actual = user_input.ValEx("-1+-12");
+            string expected = "-1 + -12";
             // Assert
             Assert.AreEqual(expected, actual);
         }
