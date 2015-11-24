@@ -20,7 +20,7 @@ namespace SimpleCalculatorTests
             // Arrange
             Evaluate userInput = new Evaluate();
             // Act  
-            int actual = userInput.EvalEx(userInput.ValEx("1+1"));
+            int actual = userInput.EvalEx("1--1");
             int expected = 2;      
             // Assert 
             Assert.AreEqual(expected, actual);
@@ -31,7 +31,7 @@ namespace SimpleCalculatorTests
         public void EvaluateEnsureBadInputThrowsException()
         {
             Evaluate user_input = new Evaluate();
-            user_input.EvalEx(user_input.ValEx("1++1"));
+            user_input.EvalEx("1++1");
         }
 
 
