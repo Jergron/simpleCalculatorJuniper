@@ -21,7 +21,7 @@ namespace SimpleCalculatorTests
             Stack user = new Stack();
             Parse input = new Parse();
             // Act
-            user.EvalEx(input.ValEx("1+1"));
+            user.EvalEx("1+1");
             string actual = user.Expression;
             string expected = "1 + 1";
             // Assert
@@ -35,7 +35,7 @@ namespace SimpleCalculatorTests
             Stack user = new Stack();
             Parse input = new Parse();
             // Act
-            user.EvalEx(input.ValEx("1+1"));
+            user.EvalEx("1+1");
             int actual = user.Answer;
             int expected = 2;
             // Assert
@@ -48,7 +48,7 @@ namespace SimpleCalculatorTests
             // Arrange
             Stack user = new Stack();
             // Act  
-            user.EvalEx(user.ValEx("1+1"));
+            user.EvalEx("1+1");
             string actual = user.lastq;
             string expected = "1 + 1";
             // Assert 
@@ -61,10 +61,10 @@ namespace SimpleCalculatorTests
             // Arrange
             Stack user = new Stack();
             // Act  
-            user.EvalEx(user.ValEx("1+1"));
+            user.EvalEx("1+1");
             int actual = user.last;
             int expected = 2;
-            // Assert 
+            // Assert  
             Assert.AreEqual(expected, actual);
         }
 

@@ -20,6 +20,7 @@ namespace SimpleCalculator
             get { return last; }
             set { last = value; }
         }
+         
         //public void CheckConstants()
         //{
         //    Regex rgx = new Regex(@"[a-zA-Z]{1,1}\s[+-*/%]{1,1}\s[a-zA-Z]{1,1}");
