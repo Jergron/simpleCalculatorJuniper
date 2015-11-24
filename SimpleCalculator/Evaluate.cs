@@ -2,7 +2,7 @@
 
 namespace SimpleCalculator
 {
-    public class Evaluate: Parse
+    public class Evaluate : Parse
     {
         public int x;
         public int y;
@@ -11,36 +11,31 @@ namespace SimpleCalculator
 
         public int EvalEx(string input)
         {
-            lastq = input;
-            string[] array = input.Split(' ');
-
+            string newInput = ValEx(input);
+            string[] array = newInput.Split(' ');
             int.TryParse(array[0], out x);
             int.TryParse(array[2], out y);
-
+            lastq = newInput;
+          
             if (array[1] == "+")
             {
-                last = x + y;
-                return x + y;
+               return last = x + y;        
             }
             else if (array[1] == "-")
             {
-                last = x - y;
-                return x - y;
+               return last = x - y;
             }
             else if (array[1] == "*")
             {
-                last = x * y;
-                return x * y;
+               return last = x * y;
             }
             else if (array[1] == "/")
             {
-                last = x / y;
-                return x / y;
+                return last = x / y;
             }
             else if (array[1] == "%")
             {
-                last = x % y;
-                return x % y;
+               return last = x % y;
             }
             else
             {
