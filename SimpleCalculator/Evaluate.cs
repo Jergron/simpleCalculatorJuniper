@@ -6,10 +6,10 @@ namespace SimpleCalculator
     {
         public int x;
         public int y;
-        public int last;
+        public decimal last;
         public string lastq;
 
-        public int EvalEx(string input)
+        public decimal EvalEx(string input)
         {
             string newInput = ValEx(input);
             string[] array = newInput.Split(' ');
@@ -31,7 +31,7 @@ namespace SimpleCalculator
             }
             else if (array[1] == "/")
             {
-                return last = x / y;
+                return last = decimal.Round(Convert.ToDecimal(x) / Convert.ToDecimal(y),2);
             }
             else if (array[1] == "%")
             {

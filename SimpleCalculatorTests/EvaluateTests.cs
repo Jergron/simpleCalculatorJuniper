@@ -20,7 +20,7 @@ namespace SimpleCalculatorTests
             // Arrange
             Evaluate userInput = new Evaluate();
             // Act  
-            int actual = userInput.EvalEx("1--1");
+            decimal actual = userInput.EvalEx("1--1");
             int expected = 2;      
             // Assert 
             Assert.AreEqual(expected, actual);
