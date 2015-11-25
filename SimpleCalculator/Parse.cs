@@ -7,11 +7,11 @@ namespace SimpleCalculator
     {
         public string AddSpace(string input)
         {          
-            string firstDigit = @"^-?\d+";
-            string secondDigit = @"(?<!\d)(-?\d+$)";
+            string firstDigit = @"^-?[a-zA-Z\d]+";
+            string secondDigit = @"(?<![a-zA-Z\d])(-?[a-zA-z\d]+$)";
             string operators = @"(?!^)([-+*/%])";
             string replacement = Regex.Match(input, firstDigit) + " " + Regex.Match(input, operators) + " " + Regex.Match(input, secondDigit);
-            string pattern = @"-?\d+[+-/%*]-?\d+";
+            string pattern = @"-?[a-zA_Z\d]+[+-/%*]-?[a-zA-z\d]+";
             Regex rgx = new Regex(pattern);
             if (rgx.IsMatch(input))
             {
@@ -35,8 +35,12 @@ namespace SimpleCalculator
             else
             {
                 throw new ArgumentException();
-            }
-            
+            }           
+        }
+
+        public int NegCount()
+        {
+            return -1;
         }
     }
 }
