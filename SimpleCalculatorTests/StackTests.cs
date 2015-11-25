@@ -36,7 +36,7 @@ namespace SimpleCalculatorTests
             Parse input = new Parse();
             // Act
             user.EvalEx("1+1");
-            int actual = user.Answer;
+            decimal actual = user.Answer;
             int expected = 2;
             // Assert
             Assert.AreEqual(expected, actual);
@@ -62,10 +62,28 @@ namespace SimpleCalculatorTests
             Stack user = new Stack();
             // Act  
             user.EvalEx("1+1");
-            int actual = user.last;
+            decimal actual = user.last;
             int expected = 2;
             // Assert  
             Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void StackEnsureICanGetValueFromDictionary()
+        {
+            Stack user = new Stack();
+            user.Constants("x=1");
+            int actual = user.constants["x"];
+            Assert.AreEqual(1, actual);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException))]
+        public void StackEnsureThrowsArgumentExceptionForSameKey()
+        {
+            Stack user = new Stack();
+            user.constants.Add("x", 1);
+            user.constants.Add("x", 1);
         }
 
     }

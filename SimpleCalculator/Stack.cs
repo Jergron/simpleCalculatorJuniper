@@ -3,7 +3,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Collections.Generic;
-using System.Text.RegularExpressions;
 
 
 namespace SimpleCalculator
@@ -15,21 +14,31 @@ namespace SimpleCalculator
             get { return lastq; }
             set { lastq = value; }
         }
-        public int Answer
+        public decimal Answer
         {
             get { return last; }
             set { last = value; }
         }
-         
-        //public void CheckConstants()
-        //{
-        //    Regex rgx = new Regex(@"[a-zA-Z]{1,1}\s[+-*/%]{1,1}\s[a-zA-Z]{1,1}");
 
-        //    if (rgx.IsMatch(Expression))
-        //    {
-        //         Expression = Expression;
-        //    }
-        //}
-       
+       public Dictionary<string, int> constants =
+                   new Dictionary<string, int>();
+
+        public void Constants(string input)
+        {
+            int digit;
+            string[] array = input.Split('=');
+            int.TryParse(array[1], out digit);
+
+            try
+            {
+                constants.Add(array[0].ToLower(), digit);
+                Console.WriteLine("   = saved " + "\'" + array[0].ToLower() + "\' " + "as" + " \'" + array[1] + '\'');
+            }
+            catch (ArgumentException)
+            {               
+                Console.WriteLine("An element with Key " + array[0].ToLower() + " already exists.");
+            }
+            
+        }
     }
 }
